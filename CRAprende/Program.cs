@@ -7,15 +7,37 @@ Console.WriteLine("Esta es una calculadora simple.");
 Calculadora calculadora = new Calculadora();
 
 bool continuar = true;
+// Ciclos (ciclo while)
 while (continuar)
 {
     Console.Write("Por favor digite el primer número: ");
     string entrada1 = Console.ReadLine();
-    double numero1 = double.Parse(entrada1);
+
+    double numero1 = 0;
+    // Bloques try-catch, para manejo de excepciones.
+    try
+    {
+        numero1 = double.Parse(entrada1);
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("El formato del número digitado es inválido. Por favor, intente de nuevo.");
+        continue;
+    }
 
     Console.Write("Por favor digite el segundo número: ");
     string entrada2 = Console.ReadLine();
-    double numero2 = double.Parse(entrada2);
+
+    double numero2 = 0;
+    try
+    {
+        numero2 = double.Parse(entrada2);
+    }
+    catch (FormatException)
+    {
+        Console.WriteLine("El formato del número digitado es inválido. Por favor, intente de nuevo.");
+        continue;
+    }
 
     // Control de flujo
     Console.Write("Por favor seleccione una operación (+, -, *, /): ");
