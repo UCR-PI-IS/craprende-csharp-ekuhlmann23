@@ -2,7 +2,7 @@ using System;
 
 namespace CRAprende;
 
-public class Calculator
+public class Calculadora
 {
     public double Sumar(double a, double b)
     {
