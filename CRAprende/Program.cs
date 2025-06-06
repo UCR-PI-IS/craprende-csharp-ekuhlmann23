@@ -4,7 +4,7 @@ using CRAprende;
 
 Console.WriteLine("Esta es una calculadora simple.");
 
-Calculadora calculadora = new Calculadora();
+CalculadoraCientifica calculadora = new CalculadoraCientifica();
 ServicioLecturaEscritura lecturaEscritura = new();
 
 bool continuar = true;
@@ -28,7 +28,7 @@ while (continuar)
     }
 
     // Control de flujo
-    Console.Write("Por favor seleccione una operación (+, -, *, /): ");
+    lecturaEscritura.ImprimirEnPantalla("Por favor seleccione una operación (+, -, *, /, !, C): ");
     string operacion = lecturaEscritura.LeerTextoDePantalla();
     // Condicional
     double resultado = 0;
@@ -47,6 +47,14 @@ while (continuar)
     else if (operacion == "/")
     {
         resultado = calculadora.Dividir(numero1.Value, numero2.Value); ;
+    }
+    else if (operacion == "!")
+    {
+        resultado = calculadora.Factorial((uint)numero1.Value);
+    }
+    else if (operacion == "C")
+    {
+        resultado = calculadora.Combinaciones((uint)numero1.Value, (uint)numero2.Value);
     }
     else
     {
