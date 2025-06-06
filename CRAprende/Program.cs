@@ -5,71 +5,59 @@ using CRAprende;
 Console.WriteLine("Esta es una calculadora simple.");
 
 Calculadora calculadora = new Calculadora();
+ServicioLecturaEscritura lecturaEscritura = new();
 
 bool continuar = true;
 // Ciclos (ciclo while)
 while (continuar)
 {
-    Console.Write("Por favor digite el primer número: ");
-    string entrada1 = Console.ReadLine();
-
-    double numero1 = 0;
-    // Bloques try-catch, para manejo de excepciones.
-    try
+    lecturaEscritura.ImprimirEnPantalla("Por favor digite el primer número: ");
+    double? numero1 = lecturaEscritura.LeerDecimalDePantalla();
+    if (numero1 is null)
     {
-        numero1 = double.Parse(entrada1);
-    }
-    catch (FormatException)
-    {
-        Console.WriteLine("El formato del número digitado es inválido. Por favor, intente de nuevo.");
+        lecturaEscritura.ImprimirLineaEnPantalla("El formato del número digitado es inválido. Por favor, intente de nuevo.");
         continue;
     }
 
-    Console.Write("Por favor digite el segundo número: ");
-    string entrada2 = Console.ReadLine();
-
-    double numero2 = 0;
-    try
+    lecturaEscritura.ImprimirEnPantalla("Por favor digite el segundo número: ");
+    double? numero2 = lecturaEscritura.LeerDecimalDePantalla();
+    if (numero2 is null)
     {
-        numero2 = double.Parse(entrada2);
-    }
-    catch (FormatException)
-    {
-        Console.WriteLine("El formato del número digitado es inválido. Por favor, intente de nuevo.");
+        lecturaEscritura.ImprimirLineaEnPantalla("El formato del número digitado es inválido. Por favor, intente de nuevo.");
         continue;
     }
 
     // Control de flujo
     Console.Write("Por favor seleccione una operación (+, -, *, /): ");
-    string operacion = Console.ReadLine();
+    string operacion = lecturaEscritura.LeerTextoDePantalla();
     // Condicional
     double resultado = 0;
     if (operacion == "+")
     {
-        resultado = calculadora.Sumar(numero1, numero2);
+        resultado = calculadora.Sumar(numero1.Value, numero2.Value);
     }
     else if (operacion == "-")
     {
-        resultado = calculadora.Restar(numero1, numero2);
+        resultado = calculadora.Restar(numero1.Value, numero2.Value);
     }
     else if (operacion == "*")
     {
-        resultado = calculadora.Multiplicar(numero1, numero2);
+        resultado = calculadora.Multiplicar(numero1.Value, numero2.Value);
     }
     else if (operacion == "/")
     {
-        resultado = calculadora.Dividir(numero1, numero2); ;
+        resultado = calculadora.Dividir(numero1.Value, numero2.Value); ;
     }
     else
     {
-        Console.WriteLine($"Operación {operacion} es inválida.");
+        lecturaEscritura.ImprimirLineaEnPantalla($"Operación {operacion} es inválida.");
         continue;
     }
 
-    Console.WriteLine($"El resultado de la operación es: {resultado}.");
+    lecturaEscritura.ImprimirLineaEnPantalla($"El resultado de la operación es: {resultado}.");
 
     Console.Write("Desea realizar otra operación? (S, N): ");
-    string respuesta = Console.ReadLine().ToUpper();
+    string respuesta = lecturaEscritura.LeerTextoDePantalla().ToUpper();
 
     if (respuesta != "S")
     {
