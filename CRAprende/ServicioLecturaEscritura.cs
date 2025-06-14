@@ -2,7 +2,7 @@ using System;
 
 namespace CRAprende;
 
-public class ServicioLecturaEscritura
+public class ServicioLecturaEscritura : IServicioLectura, IServicioEscritura
 {
     public void ImprimirLineaEnPantalla(string mensaje)
     {
@@ -32,5 +32,25 @@ public class ServicioLecturaEscritura
     public string LeerTextoDePantalla()
     {
         return Console.ReadLine() ?? string.Empty;
+    }
+
+    public double? LeerDecimal()
+    {
+        return LeerDecimalDePantalla();
+    }
+
+    public string LeerTexto()
+    {
+        return LeerTextoDePantalla();
+    }
+
+    public void Escribir(string mensaje)
+    {
+        ImprimirEnPantalla(mensaje);
+    }
+
+    public void EscribirLinea(string mensaje)
+    {
+        ImprimirLineaEnPantalla(mensaje);
     }
 }

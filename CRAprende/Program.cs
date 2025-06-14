@@ -2,34 +2,37 @@
 
 using CRAprende;
 
-Console.WriteLine("Esta es una calculadora simple.");
-
 CalculadoraCientifica calculadora = new CalculadoraCientifica();
-ServicioLecturaEscritura lecturaEscritura = new();
+DummyLecturaEscritura dummyLecturaEscritura = new();
+ServicioLecturaEscritura servicioLecturaEscritura = new();
+IServicioEscritura servicioEscritura = servicioLecturaEscritura;
+IServicioLectura servicioLectura = servicioLecturaEscritura;
+
+servicioEscritura.EscribirLinea("Esta es una calculadora simple.");
 
 bool continuar = true;
 // Ciclos (ciclo while)
 while (continuar)
 {
-    lecturaEscritura.ImprimirEnPantalla("Por favor digite el primer número: ");
-    double? numero1 = lecturaEscritura.LeerDecimalDePantalla();
+    servicioEscritura.Escribir("Por favor digite el primer número: ");
+    double? numero1 = servicioLectura.LeerDecimal();
     if (numero1 is null)
     {
-        lecturaEscritura.ImprimirLineaEnPantalla("El formato del número digitado es inválido. Por favor, intente de nuevo.");
+        servicioEscritura.EscribirLinea("El formato del número digitado es inválido. Por favor, intente de nuevo.");
         continue;
     }
 
-    lecturaEscritura.ImprimirEnPantalla("Por favor digite el segundo número: ");
-    double? numero2 = lecturaEscritura.LeerDecimalDePantalla();
+    servicioEscritura.Escribir("Por favor digite el segundo número: ");
+    double? numero2 = servicioLectura.LeerDecimal();
     if (numero2 is null)
     {
-        lecturaEscritura.ImprimirLineaEnPantalla("El formato del número digitado es inválido. Por favor, intente de nuevo.");
+        servicioEscritura.EscribirLinea("El formato del número digitado es inválido. Por favor, intente de nuevo.");
         continue;
     }
 
     // Control de flujo
-    lecturaEscritura.ImprimirEnPantalla("Por favor seleccione una operación (+, -, *, /, !, C): ");
-    string operacion = lecturaEscritura.LeerTextoDePantalla();
+    servicioEscritura.Escribir("Por favor seleccione una operación (+, -, *, /, !, C): ");
+    string operacion = servicioLectura.LeerTexto();
     // Condicional
     double resultado = 0;
     if (operacion == "+")
@@ -58,14 +61,14 @@ while (continuar)
     }
     else
     {
-        lecturaEscritura.ImprimirLineaEnPantalla($"Operación {operacion} es inválida.");
+        servicioEscritura.EscribirLinea($"Operación {operacion} es inválida.");
         continue;
     }
 
-    lecturaEscritura.ImprimirLineaEnPantalla($"El resultado de la operación es: {resultado}.");
+    servicioEscritura.EscribirLinea($"El resultado de la operación es: {resultado}.");
 
-    Console.Write("Desea realizar otra operación? (S, N): ");
-    string respuesta = lecturaEscritura.LeerTextoDePantalla().ToUpper();
+    servicioEscritura.Escribir("Desea realizar otra operación? (S, N): ");
+    string respuesta = servicioLectura.LeerTexto().ToUpper();
 
     if (respuesta != "S")
     {
