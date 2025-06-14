@@ -2,8 +2,17 @@ using System;
 
 namespace CRAprende;
 
+/// <summary>
+/// Esta clase extiende la funcionalidad de la clase <see cref="Calculadora"/> para incluir operaciones científicas
+/// como el cálculo de factoriales y combinaciones.
+/// </summary>
 public class CalculadoraCientifica : Calculadora
 {
+    /// <summary>
+    /// Calcula el factorial de un número entero no negativo.
+    /// </summary>
+    /// <param name="n">Número al cual se le calcula el factorial.</param>
+    /// <returns>Retorna el factorial de <paramref name="n"/>.</returns>
     public double Factorial(uint n)
     {
         // n! = (n-1)! * n
@@ -34,6 +43,14 @@ public class CalculadoraCientifica : Calculadora
         return resultado;
     }
 
+    /// <summary>
+    /// Calcula el número de combinaciones posibles de n elementos tomados r a la vez.
+    /// La fórmula es: C(n, r) = n! / (r! * (n - r)!).
+    /// </summary>
+    /// <param name="n">El tamaño total del conjunto de elementos.</param>
+    /// <param name="r">Cantidad de elementos tomados a la vez.</param>
+    /// <returns>Combinaciones posibles <paramref name="n"/> elementos tomados <paramref name="r"/> a la vez.</returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public double Combinaciones(uint n, uint r)
     {
         if (r > n)
