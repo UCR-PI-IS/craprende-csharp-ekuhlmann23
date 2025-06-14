@@ -1,5 +1,5 @@
 using CRAprende;
-﻿
+
 // Calculadora simple
 CalculadoraCientifica calculadora = new CalculadoraCientifica();
 DummyLecturaEscritura dummyLecturaEscritura = new();
