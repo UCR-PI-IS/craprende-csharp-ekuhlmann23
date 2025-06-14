@@ -1,5 +1,3 @@
-using System;
-
 namespace CRAprende;
 
 public class DummyLecturaEscritura : IServicioLectura, IServicioEscritura
@@ -22,3 +20,4 @@ public class DummyLecturaEscritura : IServicioLectura, IServicioEscritura
         return "+";
     }
 }
+
